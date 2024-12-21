@@ -1,0 +1,314 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #8EC5FC;
+  background-image: linear-gradient(100deg, #8EC5FC 0%, #E0C3FC 100%);
+  
+}
+.start-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 20rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.start-container h1{
+  font-size: 2.5rem;
+  margin-top: 8px;
+}
+.start-button{
+  width: 9%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  padding: 15px 30px;
+  color: #042546;
+  background-color: #FAACA8;
+  background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);
+  border: none;
+  cursor: pointer;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  box-shadow:4px 4px 3px #f89f9a;
+  transition: 0.1s;
+  border-radius:5px;
+}
+.start-button:hover{
+  background-color: transparent;
+  box-shadow: 3px 3px 5px transparent;
+  border: 1px solid #e16bb2;
+}
+.hangman-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 50px;
+}
+.hangman-container img{
+  width: 45%;
+  /* border: 2px solid #e16bb2; */
+  box-shadow:2px 5px 5px black ;
+}
+.container {
+  font-size: 16px;
+  background-color: #FBAB7E;
+  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+  width: 90vw;
+  max-width: 34em;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 3em;
+  border-radius: 0.6em;
+  box-shadow: 0 1.2em 2.4em rgba(111, 85, 0, 0.25);
+  display: none;
+}
+#options-container {
+  text-align: center;
+  height: 200px;
+}
+#options-container div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 1.2em 0 2.4em 0;
+}
+#options-container button {
+  padding: 0.6em 1.2em;
+  border: 2px solid #71e926;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 0.3em;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+#options-container button:disabled {
+  border: 1px solid #808080;
+  color: #808080;
+  background-color: #efefef;
+}
+#options-container button.active {
+  background-color: #4f4751;
+  border: 0px solid #f6ebeb;
+  color: #fff;
+}
+.letter-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6em;
+}
+#letter-container button {
+  height: 2.4em;
+  width: 2.4em;
+  border-radius: 0.3em;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+.new-game-popup {
+  background-color: #ffffff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 0.6em;
+}
+
+#user-input-section {
+  display: flex;
+  justify-content: center;
+  font-size: 1.8em;
+  margin: 0.6em 0 1.2em 0;
+}
+canvas {
+  display: block;
+  margin: auto;
+  border: 10px solid #52ff66;
+  border-radius: 10px;
+}
+.hide {
+  display: none;
+}
+#result-text h2 {
+  font-size: 1.8em;
+  text-align: center;
+}
+#result-text p {
+  font-size: 1.25em;
+  margin: 1em 0 2em 0;
+}
+#result-text span {
+  font-weight: 600;
+}
+#new-game-button {
+  font-size: 1.25em;
+  padding: 0.5em 1em;
+  background-color: #8c52ff;
+  box-shadow: 3px 3px 5px purple;
+  border: none;
+  color: #fff;
+  border-radius: 0.2em;
+  cursor: pointer;
+}
+#new-game-button:hover {
+  background-color: #6c4aff;
+  box-shadow: none;
+  border-radius: 0.2em;
+}
+.win-msg {
+  color: #39d78d;
+}
+.lose-msg {
+  color: #fe5152;
+}
+
+.preloader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #85FFBD;
+  background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+
+  z-index: 9999; /* Ensure it is on top */
+  opacity: 1;
+  transition: opacity 2s linear; /* Smooth transition for hiding */
+}
+.preloader.hidden {
+  opacity: 0;
+  pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/* Optional: Add a simple loading animation */
+
+.preloader h1{
+  font-size: 2.7rem;
+  margin-top: 10px;
+}
+.preloader h2 {
+  font-size: 1.5rem;
+  font-weight: 200;
+  animation: fadeIn 0s linear;
+  padding-bottom: 100px;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 10; }
+}
+
+/* Base styles remain unchanged */
+
+/* Existing CSS remains unchanged above this point */
+
+/* Media query for screens smaller than 768px */
+@media screen and (max-width: 768px) {
+  .start-container h1 {
+    font-size: 2rem; /* Decrease font size for smaller screens */
+  }
+  
+  .start-button {
+    width: 30%; /* Increase button width for easier tapping */
+    padding: 10px 20px; /* Adjust padding */
+  }
+
+  .hangman-container img {
+    display: none; /* Hide the hangman image on mobile */
+  }
+
+  .container {
+    width: 90vw; /* Keep width the same but ensure it fits mobile */
+    padding: 2em; /* Reduce padding */
+  }
+
+  #options-container {
+    height: auto; /* Allow container to adjust height */
+  }
+
+  #options-container button {
+    padding: 0.4em 0.8em; /* Adjust button padding */
+    font-size: 0.9em; /* Slightly decrease font size */
+  }
+
+  #letter-container button {
+    height: 2em; /* Decrease button height */
+    width: 2em; /* Decrease button width */
+  }
+
+  #user-input-section {
+    font-size: 1.5em; /* Decrease font size */
+  }
+
+  canvas {
+    width: 90%; /* Make canvas responsive */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  #result-text h2 {
+    font-size: 1.5em; /* Decrease result text size */
+  }
+
+  #result-text p {
+    font-size: 1em; /* Decrease paragraph size */
+  }
+
+  #new-game-button {
+    font-size: 1em; /* Decrease button font size */
+    padding: 0.4em 0.8em; /* Adjust padding */
+  }
+
+  .preloader h1 {
+    font-size: 2rem; /* Decrease preloader title size */
+  }
+
+  .preloader h2 {
+    font-size: 1.2rem; /* Decrease preloader subtitle size */
+  }
+}
+
+/* Media query for screens smaller than 480px */
+@media screen and (max-width: 480px) {
+  .start-button {
+    width: 80%; /* Further increase button width for small screens */
+  }
+  .hangman-container img {
+    display: none; /* Hide the hangman image on mobile */
+  }
+
+  .container {
+    padding: 1em; /* Reduce padding further for very small screens */
+  }
+
+  #options-container button {
+    width: 100%; /* Make buttons full width */
+    margin: 0.5em 0; /* Adjust margin */
+  }
+
+  .letter-container {
+    gap: 0.4em; /* Reduce gap between letters */
+  }
+
+  #letter-container button {
+    height: 1.8em; /* Further decrease button height */
+    width: 1.8em; /* Further decrease button width */
+  }
+}
